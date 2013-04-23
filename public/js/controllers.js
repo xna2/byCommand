@@ -8,12 +8,13 @@ function AppCtrl($scope, $http) {
 
 	if (localStorage.auth && localStorage.user){
 		$scope.result = '检测账户安全中⋯⋯';
-		var postData = {user:JSON.parse(localStorage.user)};
+		var user =  JSON.parse(localStorage.user);
+		var postData = {user:user};
 		$http({method: 'POST', url: '/api/login',data: postData}).
 			success(function(data, status, headers, config) {
 				console.log(data);
 				list = data.collection;
-				$scope.result = '欢迎回来！';
+				$scope.result = '欢迎回来！'+ (user.nickname || '');
 				isLoggedIn = true;
 				$scope.placeholder = "kandao xxx 01";
 			}).
@@ -166,7 +167,7 @@ function AppCtrl($scope, $http) {
 						postData = JSON.stringify(postData);
 						$http({method: 'POST', url: '/api/update',data: postData}).
 							success(function(data, status, headers, config) {
-								$scope.result = '更新成功！';
+								$scope.result = '更新成功！看到了 '+ selected.subject.name + '第 ' + parseInt(c[2]) + ' 话';
 								$scope.placeholder = "kandao xxx 01";
 							}).
 							error(function(data, status, headers, config) {

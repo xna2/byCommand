@@ -2,7 +2,7 @@ extends layout
 
 block body
 	.container-fluid
-		div(ng-controller='AppCtrl')
+		div(ng-controller='AppCtrl',ng-cloak)
 			div.row.text-center
 				form(ng-submit='onSubmit()')
 					input.input-xxlarge(type="text",ng-model='command',on-keydown='handleKeypress($event)',placeholder='{{placeholder}}')
