@@ -6,21 +6,20 @@ function AppCtrl($scope, $http) {
 	$scope.placeholder = 'login username password';
 	var isLoggedIn = false;
 
-	if (localStorage.auth){
-//		$scope.result = '检测账户安全中⋯⋯';
-//		var postData = {auth:localStorage};
-//		$http({method: 'POST', url: '/api/login',data: postData}).
-//			success(function(data, status, headers, config) {
-//				console.log(data);
-//				list = data.collection;
-//				$scope.result = '登陆成功！';
-//				isLoggedIn = true;
-//				localStorage.auth = data.user.auth;
-//				$scope.placeholder = "kandao xxx 01";
-//			}).
-//			error(function(data, status, headers, config) {
-//				$scope.result = '啊咧咧，出错了';
-//			});
+	if (localStorage.auth && localStorage.user){
+		$scope.result = '检测账户安全中⋯⋯';
+		var postData = {user:JSON.parse(localStorage.user)};
+		$http({method: 'POST', url: '/api/login',data: postData}).
+			success(function(data, status, headers, config) {
+				console.log(data);
+				list = data.collection;
+				$scope.result = '欢迎回来！';
+				isLoggedIn = true;
+				$scope.placeholder = "kandao xxx 01";
+			}).
+			error(function(data, status, headers, config) {
+				$scope.result = '啊咧咧，出错了';
+			});
 
 		isLoggedIn = true;
 	}
@@ -140,6 +139,7 @@ function AppCtrl($scope, $http) {
 								list = data.collection;
 								$scope.result = '登陆成功！ 请参照上面的格式标记收视进度，记得使用Tab键哦！';
 								isLoggedIn = true;
+								localStorage.user = JSON.stringify(data.user);
 								localStorage.auth = data.user.auth;
 								$scope.placeholder = "kandao xxx 01";
 							}).
