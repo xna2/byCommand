@@ -1,0 +1,17 @@
+var config = {};
+var env = process.env.NODE_ENV || 'development';
+
+//change this to your production settings
+if (env === 'production'){
+	config.host = '192.81.131.191';
+	config.port = 8002;
+}
+
+else{
+	config.host = '127.0.0.1';
+	config.port = 3000;
+}
+
+
+
+module.exports = config;
