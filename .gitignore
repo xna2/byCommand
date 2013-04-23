@@ -18,3 +18,4 @@ node_modules
 .idea/*
 public/u/*
 ./config.js
+config.js

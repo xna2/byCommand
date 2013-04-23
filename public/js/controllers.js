@@ -44,7 +44,6 @@ function AppCtrl($scope, $http) {
 				candidates.push(avaliableCmds[i]);
 			}
 		}
-		console.log(candidates);
 		if (candidates.length === 1) {
 			return candidates[0];
 		}
@@ -58,7 +57,6 @@ function AppCtrl($scope, $http) {
 
 	function getATitle(){
 
-		console.log(counter);
 		if (counter===list.length) {
 			counter = 0;
 		}
@@ -72,14 +70,12 @@ function AppCtrl($scope, $http) {
 	}
 
 	function prevHistory(){
-		console.log('prev: ' + historyCounter);
 		if (history.length > 0 ){
 
 			if (historyCounter===0) historyCounter = history.length-1;
 			else{
 				historyCounter--;
 			}
-			console.log('after modified:'+historyCounter )
 			return history[historyCounter];
 
 		}
@@ -88,13 +84,11 @@ function AppCtrl($scope, $http) {
 	}
 
 	function nextHistory(){
-		console.log('next: ' + historyCounter);
 		if (history.length > 0 ){
 			if (historyCounter===history.length-1) historyCounter = 0;
 			else{
 				historyCounter++;
 			}
-			console.log('after modified:'+historyCounter )
 			return history[historyCounter];
 
 		}
@@ -143,7 +137,6 @@ function AppCtrl($scope, $http) {
 						postData = JSON.stringify(postData);
 						$http({method: 'POST', url: '/api/login',data: postData}).
 							success(function(data, status, headers, config) {
-								console.log(data);
 								list = data.collection;
 								$scope.result = '登陆成功！ 请参照上面的格式标记收视进度，记得使用Tab键哦！';
 								isLoggedIn = true;
@@ -193,7 +186,6 @@ function AppCtrl($scope, $http) {
 				history.push($scope.command);
 			}
 
-			console.log(history);
 			historyCounter = 0;
 			$scope.command = "";
 
