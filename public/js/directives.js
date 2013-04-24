@@ -1,3 +1,5 @@
+define(['angular', 'services'], function(angular, services) {
+
 'use strict';
 
 /* Directives */
@@ -18,4 +20,6 @@ app.directive('onKeydown', function($parse) {
 			//});
 		});
 	};
+});
+
 });
