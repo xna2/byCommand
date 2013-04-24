@@ -34,7 +34,7 @@ function AppCtrl($scope, $http) {
 	var counter = 0;
 	var historyCounter = 0;
 	var history = [];
-	var avaliableCmds = ['kanguo','login','kandao','xiangkan'];
+	var avaliableCmds = ['logout','login','kandao'];
 
 	function getGuess(input){
 		var cmd = input;
@@ -154,6 +154,12 @@ function AppCtrl($scope, $http) {
 					}
 					break;
 					//fall to default
+				case 'logout':
+					localStorage.removeItem('auth');
+					localStorage.removeItem('user');
+					$scope.result = " 已成功登出！";
+					$scope.placeholder = 'login username password';
+					break;
 
 				case 'kandao':
 					$scope.result = '正在更新收视记录，请稍后⋯⋯';
