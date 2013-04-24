@@ -34,6 +34,10 @@ body {
 	background-color: #222222;
 }
 
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none !important;
+}
+
 /* Custom CSS overriding bootstrap fixong top-navbar and body padding issue */
 @media (min-width: 980px) {
 	body {
