@@ -178,15 +178,28 @@ define(['angular', 'services'], function (angular) {
 							break;
 						}
 						if (c.length === 3) {
-							var postData = {id:selected.subject.id, ep:parseInt(c[2]), auth:localStorage.auth};
+							debugger;
+							var postData;
+							if (!selected || c[1] !== selected.subject.name) {
+								postData = {id:0, ep:parseInt(c[2]), auth:localStorage.auth, name:c[1]};
+							}
+							else {
+								postData = {id:selected.subject.id, ep:parseInt(c[2]), auth:localStorage.auth, name:selected.subject.name};
+							}
 							postData = JSON.stringify(postData);
 							$http({method:'POST', url:'/api/update', data:postData}).
 								success(function (data, status, headers, config) {
 									if (data && data.status && data.status === "error") {
 										$scope.result = '啊咧咧，出错了: ' + data.message;
 									}
-									else{
-										$scope.result = '更新成功！看到了 ' + selected.subject.name + '第 ' + parseInt(c[2]) + ' 话';
+									else {
+										if (data.name){
+											$scope.result = '更新成功！看到了 ' + data.name + ' 第 ' + parseInt(c[2]) + ' 话';
+										}
+										else{
+											$scope.result = '更新成功！看到了 ' + selected.subject.name + ' 第 ' + parseInt(c[2]) + ' 话';
+										}
+
 										$scope.placeholder = "kandao xxx 01";
 									}
 
@@ -221,8 +234,6 @@ define(['angular', 'services'], function (angular) {
 
 
 	}])
-
-
 
 
 });

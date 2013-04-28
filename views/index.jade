@@ -1,14 +1,15 @@
 extends layout
 
 block body
-	.container-fluid
-		div(ng-controller='AppCtrl',ng-cloak)
-			div.row.text-center
-				form(ng-submit='onSubmit()')
-					input.input-xxlarge(type="text",ng-model='command',on-keydown='handleKeypress($event)',placeholder='{{placeholder}}')
-					br
-					textarea.input-xxlarge(type="text",disabled) {{result}}
+
+	.container-fluid(ng-controller='AppCtrl')
+		div.row.text-center
+			form(ng-submit='onSubmit()')
+				div(ng-show="false") 初始化中，请稍后，过几分钟就好了⋯⋯⋯⋯
+				input.input-xxlarge(type="text",ng-model='command',on-keydown='handleKeypress($event)',placeholder='{{placeholder}}',ng-cloak)
+				br
+				textarea.input-xxlarge(type="text",disabled,ng-cloak) {{result}}
 
 
-	script(data-main="js/main",src="js/lib/require/require.js")
+	script(data-main="js/bycommand.min",src="js/lib/require/require.js")
 
