@@ -30,16 +30,16 @@ app.configure('production', function () {
 
 // Routes
 
-app.get('/bc', routes.index);
-app.get('/bc/partial/:name', routes.partial);
+app.get('/', routes.index);
+app.get('/partial/:name', routes.partial);
 
 // JSON API
 
-app.get('/bc/api/:img', api.img);
-app.post('/bc/api/login', api.login);
-app.post('/bc/api/update', api.update);
+app.get('/api/:img', api.img);
+app.post('/api/login', api.login);
+app.post('/api/update', api.update);
 // redirect all others to the index (HTML5 history)
-app.get('/bc/*', routes.index);
+app.get('/*', routes.index);
 
 // Start server
 
