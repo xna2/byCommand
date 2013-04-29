@@ -8,6 +8,11 @@ var bgm = new Bangumi({
 });
 
 
+exports.img = function (req,res){
+	var data = req.params.data;
+}
+
+
 exports.login = function (req, res) {
 	var data = req.body;
 	if (data.user) {

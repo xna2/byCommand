@@ -15,7 +15,7 @@ define(['angular', 'services'], function (angular) {
 			$scope.result = '检测账户安全中⋯⋯';
 			var user = JSON.parse(localStorage.user);
 			var postData = {user:user};
-			$http({method:'POST', url:'/api/login', data:postData}).
+			$http({method:'POST', url:'/bc/api/login', data:postData}).
 				success(function (data, status, headers, config) {
 					console.log(data);
 					list = data.collection;
@@ -138,7 +138,7 @@ define(['angular', 'services'], function (angular) {
 						if (c.length === 3) {
 							var postData = {username:c[1], password:c[2]};
 							postData = JSON.stringify(postData);
-							$http({method:'POST', url:'/api/login', data:postData}).
+							$http({method:'POST', url:'/bc/api/login', data:postData}).
 								success(function (data, status, headers, config) {
 									if (data && data.status && data.status === "error") {
 										$scope.result = '啊咧咧，出错了: ' + data.message;
@@ -187,7 +187,7 @@ define(['angular', 'services'], function (angular) {
 								postData = {id:selected.subject.id, ep:parseInt(c[2]), auth:localStorage.auth, name:selected.subject.name};
 							}
 							postData = JSON.stringify(postData);
-							$http({method:'POST', url:'/api/update', data:postData}).
+							$http({method:'POST', url:'/bc/api/update', data:postData}).
 								success(function (data, status, headers, config) {
 									if (data && data.status && data.status === "error") {
 										$scope.result = '啊咧咧，出错了: ' + data.message;
